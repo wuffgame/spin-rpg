@@ -1,5 +1,6 @@
 extends Area2D
 
+signal spin_completed(action_name: String)
 var is_spinning: bool = false
 
 var wheel_data = [
@@ -53,4 +54,7 @@ func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void
 				.set_trans(Tween.TRANS_QUAD)\
 				.set_ease(Tween.EASE_OUT)
 				
-			tween.tween_callback(func(): is_spinning = false)
+			tween.tween_callback(func(): 
+				is_spinning = false
+				spin_completed.emit(winning_slot["name"])
+			)

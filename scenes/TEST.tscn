@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://1wn6lng08vh0"]
 
+[ext_resource type="Script" uid="uid://4b3r4mretk86" path="res://skripts/game.gd" id="1_5vrnj"]
 [ext_resource type="Texture2D" uid="uid://dn7h4t7hu80td" path="res://assets/wheel/wheel.png" id="1_cp1i3"]
 [ext_resource type="Script" uid="uid://dbi7rcerv4h03" path="res://skripts/wheel.gd" id="2_dywss"]
 [ext_resource type="Texture2D" uid="uid://dfse2ty8tg17p" path="res://assets/background/background.png" id="3_gtx70"]
@@ -8,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://dg37l8sv0xmqe" path="res://assets/monsters/orc/Orc-Death.png" id="5_4yhcl"]
 [ext_resource type="Texture2D" uid="uid://b732rhg6355hr" path="res://assets/monsters/orc rider/Orc rider-Idle.png" id="5_ccp30"]
 [ext_resource type="Texture2D" uid="uid://duwh2gd57xnvt" path="res://assets/monsters/skieleton/Skeleton-Idle.png" id="6_cb66q"]
+[ext_resource type="Texture2D" uid="uid://cods3bn88wfwb" path="res://assets/hp bar/hpbar2.png" id="9_j7iw8"]
+[ext_resource type="FontFile" uid="uid://xgvqj2t6gwqq" path="res://assets/font/PixelifySans-VariableFont_wght.ttf" id="10_j7iw8"]
+[ext_resource type="Script" uid="uid://bgmgrl28w5ucj" path="res://skripts/progress_bar.gd" id="10_uldtq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6vxf"]
 size = Vector2(161, 161)
@@ -237,9 +241,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f4icu"]
-size = Vector2(121, 84)
+size = Vector2(121, 100)
 
-[node name="Node2D" type="Node2D" unique_id=1324986983]
+[sub_resource type="LabelSettings" id="LabelSettings_a6vxf"]
+font = ExtResource("10_j7iw8")
+
+[node name="game" type="Node2D" unique_id=1324986983]
+script = ExtResource("1_5vrnj")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=990576374]
 zoom = Vector2(2.275, 2.275)
@@ -267,13 +275,59 @@ texture = ExtResource("3_gtx70")
 [node name="monsters" type="Area2D" parent="." unique_id=731517007]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="monsters" unique_id=2070338666]
-position = Vector2(0, -60)
-scale = Vector2(2.805555, 2.8055553)
+position = Vector2(-2.345, -62.285)
+scale = Vector2(3.316, 3.316)
 sprite_frames = SubResource("SpriteFrames_3n0or")
 animation = &"orc idle"
 autoplay = "orc idle"
-frame_progress = 0.9321048
+frame_progress = 0.8414133
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="monsters" unique_id=1829802580]
-position = Vector2(3.5, -86)
+position = Vector2(0, -89)
 shape = SubResource("RectangleShape2D_f4icu")
+
+[node name="mosterbar" type="Sprite2D" parent="." unique_id=1580037167]
+position = Vector2(0, -11)
+scale = Vector2(0.69791675, 0.69791675)
+texture = ExtResource("9_j7iw8")
+
+[node name="ProgressBar" type="ProgressBar" parent="mosterbar" unique_id=734020448]
+offset_left = -88.835815
+offset_top = 1.6551733
+offset_right = 88.835815
+offset_bottom = 15.413793
+value = 58.92
+show_percentage = false
+script = ExtResource("10_uldtq")
+
+[node name="Label" type="Label" parent="mosterbar" unique_id=349144113]
+offset_left = -73.07462
+offset_top = -17.194027
+offset_right = 73.07462
+offset_bottom = 5.805973
+text = "Orc"
+label_settings = SubResource("LabelSettings_a6vxf")
+horizontal_alignment = 1
+
+[node name="playerbar" type="Sprite2D" parent="." unique_id=1503786680]
+position = Vector2(168, 117)
+scale = Vector2(0.69791675, 0.69791675)
+texture = ExtResource("9_j7iw8")
+
+[node name="ProgressBar" type="ProgressBar" parent="playerbar" unique_id=1523486506]
+offset_left = -88.835815
+offset_top = 1.6551733
+offset_right = 88.835815
+offset_bottom = 15.413793
+value = 58.92
+show_percentage = false
+script = ExtResource("10_uldtq")
+
+[node name="Label" type="Label" parent="playerbar" unique_id=269310526]
+offset_left = -73.07462
+offset_top = -17.194027
+offset_right = 73.07462
+offset_bottom = 5.805973
+text = "Player"
+label_settings = SubResource("LabelSettings_a6vxf")
+horizontal_alignment = 1
