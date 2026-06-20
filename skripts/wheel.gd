@@ -32,7 +32,6 @@ func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void
 
 			var winning_slot = get_weighted_random_slot()
 			var random_index = winning_slot["index"]
-			print("WYLOSOWANO: ", winning_slot["name"])
 
 			var current_deg = fmod(rotation_degrees, 360.0)
 			if current_deg < 0:

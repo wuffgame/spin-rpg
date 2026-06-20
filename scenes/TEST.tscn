@@ -9,9 +9,13 @@
 [ext_resource type="Texture2D" uid="uid://dg37l8sv0xmqe" path="res://assets/monsters/orc/Orc-Death.png" id="5_4yhcl"]
 [ext_resource type="Texture2D" uid="uid://b732rhg6355hr" path="res://assets/monsters/orc rider/Orc rider-Idle.png" id="5_ccp30"]
 [ext_resource type="Texture2D" uid="uid://duwh2gd57xnvt" path="res://assets/monsters/skieleton/Skeleton-Idle.png" id="6_cb66q"]
+[ext_resource type="Texture2D" uid="uid://bkdgfu6lp5bu8" path="res://assets/monsters/orc/Orc-Hurt.png" id="7_01eqj"]
+[ext_resource type="Texture2D" uid="uid://86at88taioiu" path="res://assets/hp bar/hp bar.png" id="9_4yhcl"]
 [ext_resource type="Texture2D" uid="uid://cods3bn88wfwb" path="res://assets/hp bar/hpbar2.png" id="9_j7iw8"]
 [ext_resource type="FontFile" uid="uid://xgvqj2t6gwqq" path="res://assets/font/PixelifySans-VariableFont_wght.ttf" id="10_j7iw8"]
 [ext_resource type="Script" uid="uid://bgmgrl28w5ucj" path="res://skripts/progress_bar.gd" id="10_uldtq"]
+[ext_resource type="Script" uid="uid://b757cji8a7l1w" path="res://scenes/label.gd" id="14_qbcqn"]
+[ext_resource type="Texture2D" uid="uid://dj3dxb66yjuk4" path="res://assets/coin/coin-Sheet.png" id="16_inp63"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6vxf"]
 size = Vector2(161, 161)
@@ -54,6 +58,34 @@ region = Rect2(200, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ju2dg"]
 atlas = ExtResource("5_4yhcl")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4kaa"]
+atlas = ExtResource("5_4yhcl")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8hj3"]
+atlas = ExtResource("5_4yhcl")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47p0e"]
+atlas = ExtResource("5_4yhcl")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rci3v"]
+atlas = ExtResource("7_01eqj")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldmp0"]
+atlas = ExtResource("7_01eqj")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in6qf"]
+atlas = ExtResource("7_01eqj")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpkg3"]
+atlas = ExtResource("7_01eqj")
 region = Rect2(300, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_02nv4"]
@@ -149,7 +181,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d1gsi")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"orc attack",
 "speed": 5.0
 }, {
@@ -165,9 +197,35 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ju2dg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4kaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8hj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47p0e")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"orc death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rci3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldmp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in6qf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpkg3")
+}],
+"loop": 0,
+"name": &"orc hurt",
 "speed": 5.0
 }, {
 "frames": [{
@@ -246,6 +304,59 @@ size = Vector2(121, 100)
 [sub_resource type="LabelSettings" id="LabelSettings_a6vxf"]
 font = ExtResource("10_j7iw8")
 
+[sub_resource type="LabelSettings" id="LabelSettings_u2byv"]
+font = ExtResource("10_j7iw8")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm4lo"]
+atlas = ExtResource("16_inp63")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36yx7"]
+atlas = ExtResource("16_inp63")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlhje"]
+atlas = ExtResource("16_inp63")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xlvp"]
+atlas = ExtResource("16_inp63")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4ol8"]
+atlas = ExtResource("16_inp63")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3ugd"]
+atlas = ExtResource("16_inp63")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a6vxf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rm4lo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36yx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlhje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xlvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4ol8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3ugd")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="game" type="Node2D" unique_id=1324986983]
 script = ExtResource("1_5vrnj")
 
@@ -267,7 +378,7 @@ position = Vector2(0, -2.5)
 texture = ExtResource("1_cp1i3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=455302393]
-z_index = -1
+z_index = -5
 position = Vector2(0.33332825, 0.5)
 scale = Vector2(2.6388888, 2.6388888)
 texture = ExtResource("3_gtx70")
@@ -278,9 +389,10 @@ texture = ExtResource("3_gtx70")
 position = Vector2(-2.345, -62.285)
 scale = Vector2(3.316, 3.316)
 sprite_frames = SubResource("SpriteFrames_3n0or")
-animation = &"orc idle"
+animation = &"orc hurt"
 autoplay = "orc idle"
-frame_progress = 0.8414133
+frame = 1
+frame_progress = 0.3091819
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="monsters" unique_id=1829802580]
 position = Vector2(0, -89)
@@ -296,7 +408,6 @@ offset_left = -88.835815
 offset_top = 1.6551733
 offset_right = 88.835815
 offset_bottom = 15.413793
-value = 58.92
 show_percentage = false
 script = ExtResource("10_uldtq")
 
@@ -319,7 +430,6 @@ offset_left = -88.835815
 offset_top = 1.6551733
 offset_right = 88.835815
 offset_bottom = 15.413793
-value = 58.92
 show_percentage = false
 script = ExtResource("10_uldtq")
 
@@ -331,3 +441,28 @@ offset_bottom = 5.805973
 text = "Player"
 label_settings = SubResource("LabelSettings_a6vxf")
 horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=2002920679]
+offset_left = 195.0
+offset_top = -133.0
+offset_right = 237.0
+offset_bottom = -111.0
+text = "0"
+label_settings = SubResource("LabelSettings_u2byv")
+horizontal_alignment = 1
+script = ExtResource("14_qbcqn")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Label" unique_id=1407413467]
+z_index = -1
+position = Vector2(21, 10)
+scale = Vector2(0.7083333, 0.7083333)
+texture = ExtResource("9_4yhcl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Label" unique_id=264200722]
+position = Vector2(-20, 10)
+scale = Vector2(1.8125, 1.8125)
+sprite_frames = SubResource("SpriteFrames_a6vxf")
+autoplay = "default"
+frame_progress = 0.95964295
+
+[connection signal="spin_completed" from="Wheel" to="." method="_on_wheel_spin_completed"]
