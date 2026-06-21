@@ -16,6 +16,15 @@
 [ext_resource type="Script" uid="uid://bgmgrl28w5ucj" path="res://skripts/progress_bar.gd" id="10_uldtq"]
 [ext_resource type="Script" uid="uid://b757cji8a7l1w" path="res://scenes/label.gd" id="14_qbcqn"]
 [ext_resource type="Texture2D" uid="uid://dj3dxb66yjuk4" path="res://assets/coin/coin-Sheet.png" id="16_inp63"]
+[ext_resource type="Texture2D" uid="uid://qk1t05n4bml1" path="res://assets/upg/sword/frame_0_delay-0.1s.png" id="17_sx5v1"]
+[ext_resource type="Texture2D" uid="uid://b53rko5dv5op4" path="res://assets/upg/sword/frame_1_delay-0.1s.png" id="18_lw53l"]
+[ext_resource type="Texture2D" uid="uid://cl6b6iq4fxtui" path="res://assets/coin/coin3.png" id="19_axu25"]
+[ext_resource type="Texture2D" uid="uid://c4weh467tid5i" path="res://assets/upg/shield/frame_0_delay-0.1s.png" id="19_j0al8"]
+[ext_resource type="Texture2D" uid="uid://bw6o57ajjw3pm" path="res://assets/upg/shield/frame_1_delay-0.1s.png" id="20_axu25"]
+[ext_resource type="Texture2D" uid="uid://bigcqitvcyjwt" path="res://assets/upg/heart/frame_0_delay-0.1s.png" id="21_uub2d"]
+[ext_resource type="Texture2D" uid="uid://b4gsib8qdwt1g" path="res://assets/upg/heart/frame_1_delay-0.1s.png" id="22_24agi"]
+[ext_resource type="Texture2D" uid="uid://da2tu3idvnvvh" path="res://assets/upg/coin/frame_1_delay-0.1s.png" id="24_24agi"]
+[ext_resource type="Texture2D" uid="uid://8j5755odqfg6" path="res://assets/upg/coin/frame_0_delay-0.1s.png" id="25_beau4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6vxf"]
 size = Vector2(161, 161)
@@ -357,6 +366,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_f4icu"]
+font = ExtResource("10_j7iw8")
+font_size = 7
+
+[sub_resource type="LabelSettings" id="LabelSettings_3n0or"]
+font = ExtResource("10_j7iw8")
+font_size = 7
+
 [node name="game" type="Node2D" unique_id=1324986983]
 script = ExtResource("1_5vrnj")
 
@@ -463,6 +480,140 @@ position = Vector2(-20, 10)
 scale = Vector2(1.8125, 1.8125)
 sprite_frames = SubResource("SpriteFrames_a6vxf")
 autoplay = "default"
-frame_progress = 0.95964295
+frame_progress = 0.39472434
+
+[node name="Upgrades" type="VBoxContainer" parent="." unique_id=614949128]
+offset_left = -248.0
+offset_top = -75.0
+offset_right = -179.0
+offset_bottom = 36.0
+
+[node name="Sword_upg" type="TextureButton" parent="Upgrades" unique_id=1795820051]
+layout_mode = 2
+texture_normal = ExtResource("18_lw53l")
+texture_pressed = ExtResource("17_sx5v1")
+
+[node name="Label" type="Label" parent="Upgrades/Sword_upg" unique_id=611377843]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 62.0
+offset_bottom = 31.0
+text = "lvl 0"
+label_settings = SubResource("LabelSettings_f4icu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Upgrades/Sword_upg" unique_id=1482616786]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 17.0
+offset_right = 55.0
+offset_bottom = 28.0
+
+[node name="Label" type="Label" parent="Upgrades/Sword_upg/HBoxContainer" unique_id=943107012]
+layout_mode = 2
+text = "30"
+label_settings = SubResource("LabelSettings_3n0or")
+
+[node name="TextureRect" type="TextureRect" parent="Upgrades/Sword_upg/HBoxContainer" unique_id=564299236]
+layout_mode = 2
+texture = ExtResource("19_axu25")
+expand_mode = 2
+
+[node name="Shield_upg" type="TextureButton" parent="Upgrades" unique_id=1279523760]
+layout_mode = 2
+texture_normal = ExtResource("20_axu25")
+texture_pressed = ExtResource("19_j0al8")
+
+[node name="Label" type="Label" parent="Upgrades/Shield_upg" unique_id=1766461961]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 62.0
+offset_bottom = 31.0
+text = "lvl 0"
+label_settings = SubResource("LabelSettings_f4icu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Upgrades/Shield_upg" unique_id=1467762432]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 17.0
+offset_right = 55.0
+offset_bottom = 28.0
+
+[node name="Label" type="Label" parent="Upgrades/Shield_upg/HBoxContainer" unique_id=1842581881]
+layout_mode = 2
+text = "30"
+label_settings = SubResource("LabelSettings_3n0or")
+
+[node name="TextureRect" type="TextureRect" parent="Upgrades/Shield_upg/HBoxContainer" unique_id=682906690]
+layout_mode = 2
+texture = ExtResource("19_axu25")
+expand_mode = 2
+
+[node name="Heart_upg" type="TextureButton" parent="Upgrades" unique_id=1011345991]
+layout_mode = 2
+texture_normal = ExtResource("22_24agi")
+texture_pressed = ExtResource("21_uub2d")
+
+[node name="lvl" type="Label" parent="Upgrades/Heart_upg" unique_id=627187338]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 62.0
+offset_bottom = 31.0
+text = "lvl 0"
+label_settings = SubResource("LabelSettings_f4icu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Upgrades/Heart_upg" unique_id=990076721]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 17.0
+offset_right = 55.0
+offset_bottom = 28.0
+
+[node name="cost" type="Label" parent="Upgrades/Heart_upg/HBoxContainer" unique_id=900471212]
+layout_mode = 2
+text = "30"
+label_settings = SubResource("LabelSettings_3n0or")
+
+[node name="coin" type="TextureRect" parent="Upgrades/Heart_upg/HBoxContainer" unique_id=701057426]
+layout_mode = 2
+texture = ExtResource("19_axu25")
+expand_mode = 2
+
+[node name="Coin_upg" type="TextureButton" parent="Upgrades" unique_id=1749761065]
+layout_mode = 2
+texture_normal = ExtResource("24_24agi")
+texture_pressed = ExtResource("25_beau4")
+
+[node name="Label" type="Label" parent="Upgrades/Coin_upg" unique_id=1383970320]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 62.0
+offset_bottom = 31.0
+text = "lvl 0"
+label_settings = SubResource("LabelSettings_f4icu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Upgrades/Coin_upg" unique_id=2078010132]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 17.0
+offset_right = 55.0
+offset_bottom = 28.0
+
+[node name="Label" type="Label" parent="Upgrades/Coin_upg/HBoxContainer" unique_id=1274670974]
+layout_mode = 2
+text = "30"
+label_settings = SubResource("LabelSettings_3n0or")
+
+[node name="TextureRect" type="TextureRect" parent="Upgrades/Coin_upg/HBoxContainer" unique_id=1154618605]
+layout_mode = 2
+texture = ExtResource("19_axu25")
+expand_mode = 2
 
 [connection signal="spin_completed" from="Wheel" to="." method="_on_wheel_spin_completed"]
+[connection signal="pressed" from="Upgrades/Sword_upg" to="." method="_on_sword_upg_pressed"]
+[connection signal="pressed" from="Upgrades/Shield_upg" to="." method="_on_shield_upg_pressed"]
+[connection signal="pressed" from="Upgrades/Heart_upg" to="." method="_on_heart_upg_pressed"]
+[connection signal="pressed" from="Upgrades/Coin_upg" to="." method="_on_coin_upg_pressed"]
