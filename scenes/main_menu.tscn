@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://dxs60h0hiypue"]
+
+[ext_resource type="Texture2D" uid="uid://c70ppsqx2dtni" path="res://assets/background/background1.png" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://chvvtxra62ysr" path="res://scenes/main_menu.gd" id="1_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://b5h37rmxakhc6" path="res://assets/menu/SpinRPG menu.png" id="2_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://cods3bn88wfwb" path="res://assets/hp bar/hpbar2.png" id="3_wu84c"]
+[ext_resource type="Texture2D" uid="uid://bhpghief2vdlq" path="res://assets/hp bar/hpbar2-export.png" id="4_8ln24"]
+[ext_resource type="FontFile" uid="uid://xgvqj2t6gwqq" path="res://assets/font/PixelifySans-VariableFont_wght.ttf" id="5_8ln24"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a6vxf"]
+font = ExtResource("5_8ln24")
+font_size = 20
+
+[node name="Main menu" type="Control" unique_id=1636756464]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rtw2f")
+
+[node name="background" type="Sprite2D" parent="." unique_id=126028329]
+position = Vector2(2.000061, -1.9999695)
+scale = Vector2(6.0208335, 6.037037)
+texture = ExtResource("1_l6cm7")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1388264721]
+zoom = Vector2(1.45, 1.45)
+
+[node name="logo" type="Sprite2D" parent="." unique_id=2071490189]
+position = Vector2(-4.7683716e-07, -81)
+scale = Vector2(0.29026848, 0.29026848)
+texture = ExtResource("2_ekxnf")
+
+[node name="menu" type="VBoxContainer" parent="." unique_id=1611171367]
+layout_mode = 0
+offset_left = -100.0
+offset_top = 65.0
+offset_right = 100.0
+offset_bottom = 113.0
+
+[node name="play" type="TextureButton" parent="menu" unique_id=42718973]
+layout_mode = 2
+texture_normal = ExtResource("3_wu84c")
+texture_pressed = ExtResource("4_8ln24")
+
+[node name="Label" type="Label" parent="menu/play" unique_id=980520409]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 13.0
+offset_right = 124.0
+offset_bottom = 37.583336
+text = "PLAY"
+label_settings = SubResource("LabelSettings_a6vxf")
+
+[node name="exit" type="TextureButton" parent="menu" unique_id=936394341]
+layout_mode = 2
+texture_normal = ExtResource("3_wu84c")
+texture_pressed = ExtResource("4_8ln24")
+
+[node name="Label" type="Label" parent="menu/exit" unique_id=1137485806]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 13.0
+offset_right = 124.0
+offset_bottom = 37.583336
+text = "EXIT"
+label_settings = SubResource("LabelSettings_a6vxf")
+
+[connection signal="pressed" from="menu/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="menu/exit" to="." method="_on_exit_pressed"]
