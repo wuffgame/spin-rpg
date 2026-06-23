@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cods3bn88wfwb" path="res://assets/hp bar/hpbar2.png" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://bhpghief2vdlq" path="res://assets/hp bar/hpbar2-export.png" id="4_8ln24"]
 [ext_resource type="FontFile" uid="uid://xgvqj2t6gwqq" path="res://assets/font/PixelifySans-VariableFont_wght.ttf" id="5_8ln24"]
+[ext_resource type="AudioStream" uid="uid://ca0y5yhjiwfaf" path="res://assets/music/main menu/xDeviruchi - The Final of The Fantasy.wav" id="7_oa1go"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_a6vxf"]
 font = ExtResource("5_8ln24")
@@ -67,6 +68,11 @@ offset_right = 124.0
 offset_bottom = 37.583336
 text = "EXIT"
 label_settings = SubResource("LabelSettings_a6vxf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1808429847]
+stream = ExtResource("7_oa1go")
+volume_db = -20.0
+autoplay = true
 
 [connection signal="pressed" from="menu/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="menu/exit" to="." method="_on_exit_pressed"]
