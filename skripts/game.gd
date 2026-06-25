@@ -23,6 +23,8 @@ extends Node2D
 
 @onready var monster_level_label: Label = $mosterbar/Label2
 
+
+
 var upgrade_levels = {
 	"sword": 0,
 	"shield": 0,
