@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://vt7kkb07w187"]
 
 [ext_resource type="Texture2D" uid="uid://c70ppsqx2dtni" path="res://assets/background/background1.png" id="1_2mkfd"]
+[ext_resource type="Script" uid="uid://5hb1lupraaeb" path="res://skripts/gameover.gd" id="1_mt7yr"]
 [ext_resource type="Texture2D" uid="uid://bhpghief2vdlq" path="res://assets/hp bar/hpbar2-export.png" id="2_h8i2o"]
 [ext_resource type="Texture2D" uid="uid://cods3bn88wfwb" path="res://assets/hp bar/hpbar2.png" id="3_mt7yr"]
 [ext_resource type="FontFile" uid="uid://xgvqj2t6gwqq" path="res://assets/font/PixelifySans-VariableFont_wght.ttf" id="4_h8i2o"]
@@ -23,6 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mt7yr")
 
 [node name="background" type="Sprite2D" parent="." unique_id=839431946]
 position = Vector2(1.5, -6.4999986)
@@ -72,3 +74,5 @@ offset_right = 75.0
 offset_bottom = -11.0
 text = "YOU BEAT X LEVELS"
 label_settings = SubResource("LabelSettings_3n0or")
+
+[connection signal="pressed" from="VBoxContainer/Try again" to="." method="_on_try_again_pressed"]

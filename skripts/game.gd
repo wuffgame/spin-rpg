@@ -23,6 +23,7 @@ extends Node2D
 
 @onready var monster_level_label: Label = $mosterbar/Label2
 
+var lock = false
 
 
 var upgrade_levels = {
@@ -77,12 +78,14 @@ func _on_wheel_spin_completed(action_name: String) -> void:
 	match action_name:
 		"Sword":
 			await damage_monster(total_player_dmg)
-			
+			await get_tree().create_timer(0.5).timeout
 			if monster_current_hp > 0:
 				await damage_player(monster_final_dmg)
 		
 		"Shield":
-			pass
+			$player/AnimatedSprite2D.play("knight_block")
+			await $player/AnimatedSprite2D.animation_finished
+			$player/AnimatedSprite2D.play("knight_idle")
 		
 		"Potion":
 			var heal_amount = 15 + (player_dmg_upgrade * 0.5)
@@ -98,10 +101,14 @@ func _on_wheel_spin_completed(action_name: String) -> void:
 				await damage_player(monster_final_dmg)
 				
 func damage_monster(amount: int) -> void:
+	Level.lock = true
 	$monsters/AnimatedSprite2D.play(current_monster_name + "_hurt")
+	$player/AnimatedSprite2D.play("knight_attack")
 	hurt_sound.play()
 	await $monsters/AnimatedSprite2D.animation_finished
 	$monsters/AnimatedSprite2D.play(current_monster_name + "_idle")
+	$player/AnimatedSprite2D.play("knight_idle")
+	Level.lock = false
 	monster_current_hp -= amount
 	enemy_hp_bar.value = monster_current_hp
 	
@@ -113,15 +120,21 @@ func damage_monster(amount: int) -> void:
 		monster_killed()
 	update_hp_labels()
 func damage_player(amount: int) -> void:
+	Level.lock = true
 	$monsters/AnimatedSprite2D.play(current_monster_name + "_attack")
+	$player/AnimatedSprite2D.play("knight_hurt")
 	await get_tree().create_timer(0.6).timeout
 	slash_sound.play()
 	await $monsters/AnimatedSprite2D.animation_finished
 	$monsters/AnimatedSprite2D.play(current_monster_name + "_idle")
+	$player/AnimatedSprite2D.play("knight_idle")
+	Level.lock = false
 	player_current_hp -= amount
 	player_hp_bar.value = player_current_hp
 	
 	if player_current_hp <= 0:
+		Level.lock = true
+		Level.level = monster_index
 		game_over()
 	update_hp_labels()	
 func heal_player(amount: int) -> void:
@@ -142,11 +155,15 @@ func monster_killed() -> void:
 	setup_battle()
 	update_hp_labels()
 func game_over() -> void:
-	monster_index = 1
-	player_gold = 0
-	gold.text = str(player_gold)
-	player_current_hp = player_max_hp
-	setup_battle()
+	$player/AnimatedSprite2D.play("knight_death")
+	death_sound.play()
+	await $player/AnimatedSprite2D.animation_finished
+	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
+	#monster_index = 1
+	#player_gold = 0
+	#gold.text = str(player_gold)
+	#player_current_hp = player_max_hp
+	#setup_battle()
 	
 func get_upgrade_cost(type: String) -> int:
 	var lvl = upgrade_levels[type]

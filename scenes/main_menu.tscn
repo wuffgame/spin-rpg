@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dxs60h0hiypue"]
 
 [ext_resource type="Texture2D" uid="uid://c70ppsqx2dtni" path="res://assets/background/background1.png" id="1_l6cm7"]
-[ext_resource type="Script" uid="uid://chvvtxra62ysr" path="res://scenes/main_menu.gd" id="1_rtw2f"]
+[ext_resource type="Script" uid="uid://chvvtxra62ysr" path="res://skripts/main_menu.gd" id="1_rtw2f"]
 [ext_resource type="Texture2D" uid="uid://b5h37rmxakhc6" path="res://assets/menu/SpinRPG menu.png" id="2_ekxnf"]
 [ext_resource type="Texture2D" uid="uid://cods3bn88wfwb" path="res://assets/hp bar/hpbar2.png" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://bhpghief2vdlq" path="res://assets/hp bar/hpbar2-export.png" id="4_8ln24"]

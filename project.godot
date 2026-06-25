@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="SpinRPG"
-run/main_scene="uid://1wn6lng08vh0"
+run/main_scene="uid://dxs60h0hiypue"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="uid://c2dpn2kyo54w0"
+
+[autoload]
+
+Level="*uid://veig4emsqs61"
 
 [display]
 

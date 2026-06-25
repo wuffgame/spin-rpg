@@ -18,7 +18,7 @@
 [ext_resource type="FontFile" uid="uid://xgvqj2t6gwqq" path="res://assets/font/PixelifySans-VariableFont_wght.ttf" id="10_j7iw8"]
 [ext_resource type="Script" uid="uid://bgmgrl28w5ucj" path="res://skripts/progress_bar.gd" id="10_uldtq"]
 [ext_resource type="Texture2D" uid="uid://bnjpgorpptxmh" path="res://assets/monsters/skieleton/Skeleton-Attack01.png" id="13_dpkg3"]
-[ext_resource type="Script" uid="uid://b757cji8a7l1w" path="res://scenes/label.gd" id="14_qbcqn"]
+[ext_resource type="Script" uid="uid://b757cji8a7l1w" path="res://skripts/label.gd" id="14_qbcqn"]
 [ext_resource type="Texture2D" uid="uid://dpj1v5cpxfgo5" path="res://assets/monsters/skieleton/Skeleton-Death.png" id="14_rm4lo"]
 [ext_resource type="Texture2D" uid="uid://p4befnovvw1f" path="res://assets/monsters/skieleton/Skeleton-Hurt.png" id="15_36yx7"]
 [ext_resource type="Texture2D" uid="uid://dj3dxb66yjuk4" path="res://assets/coin/coin-Sheet.png" id="16_inp63"]
@@ -42,6 +42,7 @@
 [ext_resource type="AudioStream" uid="uid://c3b1h25cwgojy" path="res://assets/music/mics/Crunch.wav" id="32_j4kaa"]
 [ext_resource type="Texture2D" uid="uid://ceejcmww6eso3" path="res://assets/player/Knight-Attack01.png" id="40_b3ugd"]
 [ext_resource type="Texture2D" uid="uid://b2cfvlm6ayopa" path="res://assets/player/Knight-Death.png" id="41_e07q6"]
+[ext_resource type="Texture2D" uid="uid://bje0u14maihih" path="res://assets/player/Knight-Block.png" id="42_e07q6"]
 [ext_resource type="Texture2D" uid="uid://ca157vyuasanf" path="res://assets/player/Knight-Hurt.png" id="42_jjsix"]
 [ext_resource type="Texture2D" uid="uid://b42q27by00hyt" path="res://assets/player/Knight-Idle.png" id="43_4vahb"]
 
@@ -686,6 +687,22 @@ region = Rect2(500, 0, 100, 100)
 atlas = ExtResource("40_b3ugd")
 region = Rect2(600, 0, 100, 100)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2rkq"]
+atlas = ExtResource("42_e07q6")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv444"]
+atlas = ExtResource("42_e07q6")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pvoc"]
+atlas = ExtResource("42_e07q6")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcwxq"]
+atlas = ExtResource("42_e07q6")
+region = Rect2(300, 0, 100, 100)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ujw55"]
 atlas = ExtResource("41_e07q6")
 region = Rect2(0, 0, 100, 100)
@@ -766,8 +783,25 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rli2y")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"knight_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2rkq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv444")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pvoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcwxq")
+}],
+"loop": 0,
+"name": &"knight_block",
 "speed": 5.0
 }, {
 "frames": [{
@@ -782,8 +816,17 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_et4o2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_et4o2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_et4o2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_et4o2")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"knight_death",
 "speed": 5.0
 }, {
@@ -800,7 +843,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nhoem")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"knight_hurt",
 "speed": 5.0
 }, {
@@ -1110,7 +1153,7 @@ position = Vector2(321, -2)
 position = Vector2(-163.00002, 59)
 scale = Vector2(3.7600002, 3.7600002)
 sprite_frames = SubResource("SpriteFrames_ojblr")
-animation = &"knight_idle"
+animation = &"knight_death"
 autoplay = "knight_idle"
 flip_h = true
 
