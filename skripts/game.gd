@@ -72,34 +72,35 @@ func setup_battle() -> void:
 	$monsters/AnimatedSprite2D.play(current_monster_name + "_idle")
 
 func _on_wheel_spin_completed(action_name: String) -> void:
-	var total_player_dmg = player_base_damage + player_dmg_upgrade
-	var monster_final_dmg = max(1, monster_damage - player_defense)
-	
-	match action_name:
-		"Sword":
-			await damage_monster(total_player_dmg)
-			await get_tree().create_timer(0.5).timeout
-			if monster_current_hp > 0:
-				await damage_player(monster_final_dmg)
+	if Level.lock == false:
+		var total_player_dmg = player_base_damage + player_dmg_upgrade
+		var monster_final_dmg = max(1, monster_damage - player_defense)
 		
-		"Shield":
-			$player/AnimatedSprite2D.play("knight_block")
-			await $player/AnimatedSprite2D.animation_finished
-			$player/AnimatedSprite2D.play("knight_idle")
-		
-		"Potion":
-			var heal_amount = 15 + (player_dmg_upgrade * 0.5)
-			heal_player(heal_amount)
+		match action_name:
+			"Sword":
+				await damage_monster(total_player_dmg)
+				await get_tree().create_timer(0.5).timeout
+				if monster_current_hp > 0:
+					await damage_player(monster_final_dmg)
 			
-			await damage_player(monster_final_dmg)
-		
-		"Wand":
-			var ulti_dmg = total_player_dmg * 3
-			await damage_monster(ulti_dmg)
+			"Shield":
+				$player/AnimatedSprite2D.play("knight_block")
+				await $player/AnimatedSprite2D.animation_finished
+				$player/AnimatedSprite2D.play("knight_idle")
 			
-			if monster_current_hp > 0:
-				await damage_player(monster_final_dmg)
+			"Potion":
+				var heal_amount = 15 + (player_dmg_upgrade * 0.5)
+				heal_player(heal_amount)
 				
+				await damage_player(monster_final_dmg)
+			
+			"Wand":
+				var ulti_dmg = total_player_dmg * 3
+				await damage_monster(ulti_dmg)
+				
+				if monster_current_hp > 0:
+					await damage_player(monster_final_dmg)
+					
 func damage_monster(amount: int) -> void:
 	Level.lock = true
 	$monsters/AnimatedSprite2D.play(current_monster_name + "_hurt")
@@ -108,7 +109,6 @@ func damage_monster(amount: int) -> void:
 	await $monsters/AnimatedSprite2D.animation_finished
 	$monsters/AnimatedSprite2D.play(current_monster_name + "_idle")
 	$player/AnimatedSprite2D.play("knight_idle")
-	Level.lock = false
 	monster_current_hp -= amount
 	enemy_hp_bar.value = monster_current_hp
 	
@@ -119,6 +119,7 @@ func damage_monster(amount: int) -> void:
 	if monster_current_hp <= 0:
 		monster_killed()
 	update_hp_labels()
+	Level.lock = false
 func damage_player(amount: int) -> void:
 	Level.lock = true
 	$monsters/AnimatedSprite2D.play(current_monster_name + "_attack")
@@ -128,20 +129,21 @@ func damage_player(amount: int) -> void:
 	await $monsters/AnimatedSprite2D.animation_finished
 	$monsters/AnimatedSprite2D.play(current_monster_name + "_idle")
 	$player/AnimatedSprite2D.play("knight_idle")
-	Level.lock = false
 	player_current_hp -= amount
 	player_hp_bar.value = player_current_hp
 	
 	if player_current_hp <= 0:
-		Level.lock = true
 		Level.level = monster_index
-		game_over()
-	update_hp_labels()	
+		await game_over()
+		return
+	update_hp_labels()
+	Level.lock = false
 func heal_player(amount: int) -> void:
 	player_current_hp = min(player_max_hp, player_current_hp + amount)
 	player_hp_bar.value = player_current_hp
 	update_hp_labels()
 func monster_killed() -> void:
+	Level.lock = true
 	$monsters/AnimatedSprite2D.play(current_monster_name + "_death")
 	death_sound.play()
 	await $monsters/AnimatedSprite2D.animation_finished
@@ -154,16 +156,13 @@ func monster_killed() -> void:
 	
 	setup_battle()
 	update_hp_labels()
+	Level.lock = false
 func game_over() -> void:
+	Level.lock = true
 	$player/AnimatedSprite2D.play("knight_death")
 	death_sound.play()
 	await $player/AnimatedSprite2D.animation_finished
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
-	#monster_index = 1
-	#player_gold = 0
-	#gold.text = str(player_gold)
-	#player_current_hp = player_max_hp
-	#setup_battle()
 	
 func get_upgrade_cost(type: String) -> int:
 	var lvl = upgrade_levels[type]
