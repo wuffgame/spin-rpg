@@ -1,9 +1,9 @@
 # spin-rpg
 
-##Why is there hardly a single asset?
+## Why is there hardly a single asset?
 All the assets I use are paid, and their licenses do not permit free redistribution; however, you can view them in the credits section.
 
-##Credits:
+## Credits:
 wuff (me) - programming and edditing assets
 
 Zerie - https://zerie.itch.io/tiny-rpg-character-asset-pack
